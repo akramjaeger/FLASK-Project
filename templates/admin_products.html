@@ -1,0 +1,44 @@
+{% extends 'base.html' %}
+
+{% block title %}Manage Products | GameCard Market{% endblock %}
+
+{% block content %}
+<section class="section-head row-head">
+    <h1>Manage Products</h1>
+    <a class="btn btn-primary" href="{{ url_for('admin_add_product') }}">Add New</a>
+</section>
+
+<div class="grid cards">
+    {% for item in items %}
+    <article class="card reveal">
+        <img src="{{ item.image_url or 'https://via.placeholder.com/1200x700?text=No+Image' }}" alt="{{ item.title }}">
+        <div class="card-body">
+            <p class="pill">{{ item.category.replace('_', ' ') }}</p>
+            <h3>{{ item.title }}</h3>
+            <p class="meta">{{ item.platform }} | {{ item.region }}</p>
+            <p class="meta">Stock: {{ item.stock }}</p>
+            <p class="meta">${{ '%.2f'|format(item.price) }}</p>
+            {% if item.is_hidden %}
+            <p class="meta danger-text">Hidden</p>
+            {% else %}
+            <p class="meta success-text">Visible</p>
+            {% endif %}
+
+            <div class="admin-actions">
+                <a class="btn btn-ghost-dark" href="{{ url_for('admin_edit_product', product_id=item.id) }}">Edit</a>
+                <form class="inline-form" method="post" action="{{ url_for('admin_toggle_product_visibility', product_id=item.id) }}">
+                    <button class="btn btn-muted" type="submit">
+                        {% if item.is_hidden %}Unhide{% else %}Hide{% endif %}
+                    </button>
+                </form>
+                <form class="inline-form" method="post" action="{{ url_for('admin_delete_product', product_id=item.id) }}" onsubmit="return confirm('Delete this product?');">
+                    <button class="btn btn-danger" type="submit">Delete</button>
+                </form>
+            </div>
+        </div>
+    </article>
+    {% else %}
+    <p>No products found.</p>
+    {% endfor %}
+</div>
+{% endblock %}

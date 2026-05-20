@@ -1,0 +1,49 @@
+{% extends 'base.html' %}
+
+{% block title %}GameCard Market | Browse{% endblock %}
+
+{% block content %}
+<section class="section-head">
+    <h1>Marketplace Listings</h1>
+</section>
+
+<form class="filter-bar" method="get" action="{{ url_for('products') }}">
+    <input type="text" name="q" placeholder="Search title, platform, region" value="{{ search_query }}">
+    <select name="category">
+        <option value="" {% if not selected_category %}selected{% endif %}>All Categories</option>
+        <option value="gift_card" {% if selected_category == 'gift_card' %}selected{% endif %}>Gift Cards</option>
+        <option value="video_game" {% if selected_category == 'video_game' %}selected{% endif %}>Video Games</option>
+    </select>
+    <button class="btn btn-primary" type="submit">Apply</button>
+</form>
+
+<div class="grid cards">
+    {% for item in items %}
+    <article class="card reveal">
+        <img src="{{ item.image_url or 'https://via.placeholder.com/1200x700?text=No+Image' }}" alt="{{ item.title }}">
+        <div class="card-body">
+            <p class="pill">{{ item.category.replace('_', ' ') }}</p>
+            <h3>{{ item.title }}</h3>
+            <p class="meta">{{ item.platform }} | {{ item.region }}</p>
+            {% if item.is_hidden and is_admin %}
+            <p class="meta danger-text">Hidden from users</p>
+            {% endif %}
+            <div class="card-bottom">
+                <strong>${{ '%.2f'|format(item.price) }}</strong>
+                <a href="{{ url_for('product_detail', product_id=item.id) }}">View</a>
+            </div>
+            {% if is_user %}
+            <form class="inline-form" method="post" action="{{ url_for('cart_add', product_id=item.id) }}">
+                <input type="hidden" name="quantity" value="1">
+                <button class="btn btn-primary" type="submit" {% if item.stock <= 0 %}disabled{% endif %}>
+                    {% if item.stock <= 0 %}Out of stock{% else %}Add to cart{% endif %}
+                </button>
+            </form>
+            {% endif %}
+        </div>
+    </article>
+    {% else %}
+    <p>No matching listings found.</p>
+    {% endfor %}
+</div>
+{% endblock %}

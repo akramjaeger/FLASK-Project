@@ -1,0 +1,48 @@
+{% extends 'base.html' %}
+
+{% block title %}Admin Add Product | GameCard Market{% endblock %}
+
+{% block content %}
+<section class="section-head">
+    <h1>Add Product (Admin)</h1>
+</section>
+
+<form class="sell-form" method="post" action="{{ url_for('admin_add_product') }}">
+    <label>Title
+        <input type="text" name="title" required>
+    </label>
+
+    <label>Category
+        <select name="category" required>
+            <option value="gift_card">Gift Card</option>
+            <option value="video_game">Video Game</option>
+        </select>
+    </label>
+
+    <label>Platform
+        <input type="text" name="platform" placeholder="Steam, PS5, Xbox, PC" required>
+    </label>
+
+    <label>Region
+        <input type="text" name="region" placeholder="Global, US, EU" required>
+    </label>
+
+    <label>Price (USD)
+        <input type="number" name="price" min="0.01" step="0.01" required>
+    </label>
+
+    <label>Stock
+        <input type="number" name="stock" min="0" step="1" required>
+    </label>
+
+    <label>Image URL
+        <input type="url" name="image_url" placeholder="https://...">
+    </label>
+
+    <label>Description
+        <textarea name="description" rows="5" placeholder="Add details, delivery method, edition, etc."></textarea>
+    </label>
+
+    <button class="btn btn-primary" type="submit">Publish Listing</button>
+</form>
+{% endblock %}

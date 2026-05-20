@@ -1,0 +1,21 @@
+{% extends 'base.html' %}
+
+{% block title %}Login | GameCard Market{% endblock %}
+
+{% block content %}
+<section class="section-head">
+    <h1>Login</h1>
+</section>
+
+<form class="sell-form" method="post" action="{{ url_for('login') }}">
+    <label>Username
+        <input type="text" name="username" required>
+    </label>
+
+    <label>Password
+        <input type="password" name="password" required>
+    </label>
+
+    <button class="btn btn-primary" type="submit">Sign In</button>
+</form>
+{% endblock %}

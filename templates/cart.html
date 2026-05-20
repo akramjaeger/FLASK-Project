@@ -1,0 +1,65 @@
+{% extends 'base.html' %}
+
+{% block title %}My Cart | GameCard Market{% endblock %}
+
+{% block content %}
+<section class="section-head row-head">
+    <h1>My Cart</h1>
+    <a class="btn btn-ghost-dark" href="{{ url_for('products') }}">Continue Shopping</a>
+</section>
+
+{% if rows %}
+<div class="cart-table-wrap">
+    <table class="cart-table">
+        <thead>
+            <tr>
+                <th>Item</th>
+                <th>Price</th>
+                <th>Quantity</th>
+                <th>Status</th>
+                <th>Total</th>
+                <th></th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for row in rows %}
+            <tr>
+                <td>{{ row.title }}</td>
+                <td>${{ '%.2f'|format(row.price) }}</td>
+                <td>
+                    <form class="inline-form" method="post" action="{{ url_for('cart_update', product_id=row.product_id) }}">
+                        <input class="qty-input" type="number" name="quantity" min="1" max="{{ row.stock }}" value="{{ row.quantity }}">
+                        <button class="btn btn-muted" type="submit">Update</button>
+                    </form>
+                </td>
+                <td>
+                    {% if row.is_hidden %}
+                    <span class="danger-text">Hidden</span>
+                    {% elif row.stock < row.quantity %}
+                    <span class="danger-text">Low stock</span>
+                    {% else %}
+                    <span class="success-text">Ready</span>
+                    {% endif %}
+                </td>
+                <td>${{ '%.2f'|format(row.price * row.quantity) }}</td>
+                <td>
+                    <form class="inline-form" method="post" action="{{ url_for('cart_remove', product_id=row.product_id) }}">
+                        <button class="btn btn-danger" type="submit">Remove</button>
+                    </form>
+                </td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</div>
+
+<div class="cart-footer">
+    <p><strong>Subtotal:</strong> ${{ '%.2f'|format(subtotal) }}</p>
+    <form method="post" action="{{ url_for('checkout') }}">
+        <button class="btn btn-primary" type="submit">Buy Now</button>
+    </form>
+</div>
+{% else %}
+<p>Your cart is empty.</p>
+{% endif %}
+{% endblock %}

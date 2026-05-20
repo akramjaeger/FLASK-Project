@@ -1,0 +1,51 @@
+{% extends 'base.html' %}
+
+{% block title %}Edit Product | GameCard Market{% endblock %}
+
+{% block content %}
+<section class="section-head">
+    <h1>Edit Product</h1>
+</section>
+
+<form class="sell-form" method="post" action="{{ url_for('admin_edit_product', product_id=item.id) }}">
+    <label>Title
+        <input type="text" name="title" value="{{ item.title }}" required>
+    </label>
+
+    <label>Category
+        <select name="category" required>
+            <option value="gift_card" {% if item.category == 'gift_card' %}selected{% endif %}>Gift Card</option>
+            <option value="video_game" {% if item.category == 'video_game' %}selected{% endif %}>Video Game</option>
+        </select>
+    </label>
+
+    <label>Platform
+        <input type="text" name="platform" value="{{ item.platform }}" required>
+    </label>
+
+    <label>Region
+        <input type="text" name="region" value="{{ item.region }}" required>
+    </label>
+
+    <label>Price (USD)
+        <input type="number" name="price" min="0.01" step="0.01" value="{{ item.price }}" required>
+    </label>
+
+    <label>Stock
+        <input type="number" name="stock" min="0" step="1" value="{{ item.stock }}" required>
+    </label>
+
+    <label>Image URL
+        <input type="url" name="image_url" value="{{ item.image_url }}">
+    </label>
+
+    <label>Description
+        <textarea name="description" rows="5">{{ item.description }}</textarea>
+    </label>
+
+    <div class="form-actions">
+        <button class="btn btn-primary" type="submit">Save Changes</button>
+        <a class="btn btn-ghost-dark" href="{{ url_for('admin_products') }}">Cancel</a>
+    </div>
+</form>
+{% endblock %}

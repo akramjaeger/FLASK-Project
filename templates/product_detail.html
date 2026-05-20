@@ -1,0 +1,30 @@
+{% extends 'base.html' %}
+
+{% block title %}{{ item.title }} | GameCard Market{% endblock %}
+
+{% block content %}
+<article class="detail reveal">
+    <img src="{{ item.image_url or 'https://via.placeholder.com/1200x700?text=No+Image' }}" alt="{{ item.title }}">
+    <div>
+        <p class="pill">{{ item.category.replace('_', ' ') }}</p>
+        <h1>{{ item.title }}</h1>
+        {% if item.is_hidden and is_admin %}
+        <p class="meta danger-text">This product is hidden from users.</p>
+        {% endif %}
+        <p class="meta">Platform: {{ item.platform }}</p>
+        <p class="meta">Region: {{ item.region }}</p>
+        <p class="price">${{ '%.2f'|format(item.price) }}</p>
+        <p class="meta">Stock: {{ item.stock }}</p>
+        <p class="desc">{{ item.description }}</p>
+        {% if is_user %}
+        <form class="inline-form" method="post" action="{{ url_for('cart_add', product_id=item.id) }}">
+            <input type="hidden" name="quantity" value="1">
+            <button class="btn btn-primary" type="submit" {% if item.stock <= 0 %}disabled{% endif %}>
+                {% if item.stock <= 0 %}Out of stock{% else %}Add to cart{% endif %}
+            </button>
+        </form>
+        {% endif %}
+        <a class="btn btn-ghost" href="{{ url_for('products') }}">Back to listings</a>
+    </div>
+</article>
+{% endblock %}

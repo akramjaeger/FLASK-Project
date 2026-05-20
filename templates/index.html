@@ -1,0 +1,50 @@
+{% extends 'base.html' %}
+
+{% block title %}GameCard Market | Home{% endblock %}
+
+{% block content %}
+<section class="hero">
+    <div class="hero-text">
+        <p class="kicker">Digital Marketplace</p>
+        <h1>Buy and sell gift cards and video games in one place.</h1>
+        <p>Find trusted deals on Steam, PlayStation, Xbox cards, and digital game keys.</p>
+        <div class="hero-actions">
+            <a class="btn btn-primary" href="{{ url_for('products') }}">Browse Listings</a>
+            {% if is_admin %}
+            <a class="btn btn-ghost" href="{{ url_for('admin_add_product') }}">Add Product</a>
+            {% elif is_user %}
+            <a class="btn btn-ghost" href="{{ url_for('cart') }}">Open Cart</a>
+            {% elif not is_logged_in %}
+            <a class="btn btn-ghost" href="{{ url_for('login') }}">Login</a>
+            {% endif %}
+        </div>
+    </div>
+</section>
+
+{% if error_message %}
+<p class="error-text">{{ error_message }}</p>
+{% endif %}
+
+<section class="section-head">
+    <h2>Latest Listings</h2>
+</section>
+
+<div class="grid cards">
+    {% for item in featured %}
+    <article class="card reveal">
+        <img src="{{ item.image_url or 'https://via.placeholder.com/1200x700?text=No+Image' }}" alt="{{ item.title }}">
+        <div class="card-body">
+            <p class="pill">{{ item.category.replace('_', ' ') }}</p>
+            <h3>{{ item.title }}</h3>
+            <p class="meta">{{ item.platform }} | {{ item.region }}</p>
+            <div class="card-bottom">
+                <strong>${{ '%.2f'|format(item.price) }}</strong>
+                <a href="{{ url_for('product_detail', product_id=item.id) }}">View</a>
+            </div>
+        </div>
+    </article>
+    {% else %}
+    <p>No listings available yet.</p>
+    {% endfor %}
+</div>
+{% endblock %}
