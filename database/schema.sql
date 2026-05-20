@@ -65,4 +65,15 @@ VALUES
 ('Steam Wallet $50', 'gift_card', 'Steam', 'Global', 45.00, 10, 'https://images.unsplash.com/photo-1614294148960-9aa740632a87?auto=format&fit=crop&w=1200&q=80', 'Instant delivery Steam wallet gift card for global use.'),
 ('PlayStation Store $25', 'gift_card', 'PlayStation', 'US', 22.00, 7, 'https://images.unsplash.com/photo-1605901309584-818e25960a8f?auto=format&fit=crop&w=1200&q=80', 'US region PlayStation Store card, redeemable on PSN.'),
 ('Elden Ring (PC)', 'video_game', 'PC', 'Global', 39.99, 5, 'https://images.unsplash.com/photo-1542751110-97427bbecf20?auto=format&fit=crop&w=1200&q=80', 'Digital code for Elden Ring on PC.'),
-('FIFA 25 (PS5)', 'video_game', 'PlayStation 5', 'EU', 54.99, 3, 'https://images.unsplash.com/photo-1511512578047-dfb367046420?auto=format&fit=crop&w=1200&q=80', 'EU version digital edition for PS5.');
+('FIFA 25 (PS5)', 'video_game', 'PlayStation 5', 'EU', 54.99, 3, 'https://images.unsplash.com/photo-1511512578047-dfb367046420?auto=format&fit=crop&w=1200&q=80', 'EU version digital edition for PS5.'),
+('Xbox Gift Card $50', 'gift_card', 'Xbox', 'US', 47.50, 8, 'https://images.unsplash.com/photo-1605902711622-cfb43c44367e?auto=format&fit=crop&w=1200&q=80', 'Xbox Live gift card code, US region.'),
+('Nintendo eShop $20', 'gift_card', 'Nintendo Switch', 'Global', 18.00, 12, 'https://images.unsplash.com/photo-1542751371-adc38448a05e?auto=format&fit=crop&w=1200&q=80', 'Nintendo eShop card, digital code.'),
+('Steam Wallet $20', 'gift_card', 'Steam', 'Global', 18.50, 15, 'https://images.unsplash.com/photo-1518837695005-2083093ee35b?auto=format&fit=crop&w=1200&q=80', 'Smaller Steam Wallet top-up.'),
+('Google Play $25', 'gift_card', 'Google Play', 'Global', 23.00, 9, 'https://images.unsplash.com/photo-1526378724330-1d6f6a1b3f13?auto=format&fit=crop&w=1200&q=80', 'Google Play credit code.'),
+('Discord Nitro 1mo', 'gift_card', 'Discord', 'Global', 4.99, 25, 'https://images.unsplash.com/photo-1545235617-9465d0b1b3b4?auto=format&fit=crop&w=1200&q=80', 'One month Discord Nitro subscription code.'),
+('Minecraft (PC)', 'video_game', 'PC', 'Global', 26.95, 6, 'https://images.unsplash.com/photo-1600486913747-55e5470f3f73?auto=format&fit=crop&w=1200&q=80', 'Minecraft Java Edition digital code.'),
+('Among Us (PC)', 'video_game', 'PC', 'Global', 2.99, 20, 'https://images.unsplash.com/photo-1606813902484-3d5d1b1f6f20?auto=format&fit=crop&w=1200&q=80', 'Casual multiplayer game code.'),
+('Call of Duty (PS5)', 'video_game', 'PlayStation 5', 'US', 59.99, 4, 'https://images.unsplash.com/photo-1606813902484-3d5d1b1f6f20?auto=format&fit=crop&w=1200&q=80', 'PS5 digital edition code.'),
+('Rocket League (Switch)', 'video_game', 'Nintendo Switch', 'Global', 19.99, 7, 'https://images.unsplash.com/photo-1597262975002-c5c3b14bbd62?auto=format&fit=crop&w=1200&q=80', 'Rocket League digital copy for Switch.'),
+('Frostborn DLC', 'video_game', 'PC', 'Global', 9.99, 10, 'https://images.unsplash.com/photo-1593642532400-2682810df593?auto=format&fit=crop&w=1200&q=80', 'Expansion/DLC code for Frostborn.'),
+('Xbox Game Pass 3mo', 'gift_card', 'Xbox', 'Global', 29.99, 5, 'https://images.unsplash.com/photo-1593642532973-d31b6557fa68?auto=format&fit=crop&w=1200&q=80', 'Three month Game Pass subscription code.');
